@@ -7,3 +7,6 @@ commands:
   test:
     description: "플러그인의 작동 여부를 알려줍니다."
     usage: /test
+  인벤토리:
+    description: "커스텀 인벤토리 작동"
+    usage: /인벤토리

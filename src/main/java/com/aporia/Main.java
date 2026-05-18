@@ -14,7 +14,8 @@ public class Main extends JavaPlugin {
         // tihs.getCommand("test"): 현재 플러그인에서 "test"라는 이름을 가진 명령어를 가져옴
         // 이 명령어는 plugin.yml 파일에 정의된 명령어 중 하나여야 함
         // Objects.requireNonNull(): 해당하는 명령어를 찾을 수 있으면 해당 명령어 객체 반환, 존재하지 않으면 null 반환
-        // setExecutor(): 명령어가 실행되었을 때 호출할 실행 처리기(executor) 설정 
+        // setExecutor(): 명령어가 실행되었을 때 호출할 실행 처리기(executor) 설정
+        Objects.requireNonNull(this.getCommand("인벤토리")).setExecutor(new MyCommand());
     }
 
     @Override

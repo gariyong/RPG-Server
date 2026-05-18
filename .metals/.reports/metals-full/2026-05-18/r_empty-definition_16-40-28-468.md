@@ -1,3 +1,14 @@
+error id: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/MyCommand.java:_empty_/ItemMeta#setDisplayName#
+file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/MyCommand.java
+empty definition using pc, found symbol in pc: _empty_/ItemMeta#setDisplayName#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 2202
+uri: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/MyCommand.java
+text:
+```scala
 package com.aporia;
 
 import org.bukkit.command.CommandExecutor;
@@ -5,9 +16,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-
-import net.kyori.adventure.text.Component;
-
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -42,30 +50,27 @@ public class MyCommand implements CommandExecutor{
         if(cmd.getName().equalsIgnoreCase("인벤토리")){
             if(sender instanceof Player){
                 Player player = (Player) sender;
-                openCustomInventory(player);
-
-                return true;
+                
             }
-
-            return false;
         }
 
         return true;
     }
 
     public void openCustomInventory(Player player){
-        // 인벤토리 생성하는 코드
-        Inventory customInventory = Bukkit.createInventory(null, 9, Component.text("customInventory"));
+        Inventory customInventory = Bukkit.createInventory(player, 9, "커스텀 인벤토리");
         ItemStack diamondSword = new ItemStack(Material.DIAMOND_SWORD, 1);
         ItemMeta meta = diamondSword.getItemMeta();
 
         if(meta != null){
-            meta.displayName(Component.text("test diamond sword"));
-            diamondSword.setItemMeta(meta);
+            meta.setDis@@playName("test diamond sword");
         }
-
-        customInventory.setItem(0, diamondSword);
-
-        player.openInventory(customInventory);
     }
 }
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: _empty_/ItemMeta#setDisplayName#
