@@ -53,19 +53,21 @@ public class Main extends JavaPlugin implements Listener{
 
     @SuppressWarnings("deprecation")
     public void createScoreBoard(Player player){
-        ScoreboardManager manager = Bukkit.getScoreboardManager();
-        Scoreboard board = manager.getNewScoreboard();
-        Objective o = board.registerNewObjective("My server", "dummy");
+        ScoreboardManager manager = Bukkit.getScoreboardManager();      // 서버에서 점수판 관리자를 가져옴
+        Scoreboard board = manager.getNewScoreboard();                  // 새로운 빈 점수판 객체 생성
+        Objective o = board.registerNewObjective("My server", "dummy"); // 잉름과 dummy(수동 업데이트) 유형의 오브젝트 생성
 
-        o.setDisplayName(ChatColor.BOLD + "My Server");
-        o.setDisplaySlot(DisplaySlot.SIDEBAR);
-        Score score = o.getScore("Players: ");
-        score.setScore(Bukkit.getOnlinePlayers().size());
-        player.setScoreboard(board);
+        o.setDisplayName(ChatColor.BOLD + "My Server");                 // 점수판의 제목을 설정, 굵은 글씨로 표시
+        o.setDisplaySlot(DisplaySlot.SIDEBAR);                          // 점수판을 화면의 사이드바에 표시하도록 설정함
+        Score score = o.getScore("Players: ");                          // Players라는 텍스트로 점수를 추가함
+        score.setScore(Bukkit.getOnlinePlayers().size());               // 현재 온라인 플레이어 수를 점수로 설정함
+        player.setScoreboard(board);                                    // 생성된 점수판을 플레이어에게 적용
     }
 
     public void updateScoreBoard(){
+        // 현재 서버에 접속중인 모든 플레이어의 목록을 가져옴
         for(Player online : Bukkit.getOnlinePlayers()){
+            // 플레이어의 현재 점수판에서 사이드바에 표시된 오브젝트에서 "Players: "라는 이름의 점수를 가져옴
             Score score = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore("Players: ");
             score.setScore(Bukkit.getOnlinePlayers().size());
         }
