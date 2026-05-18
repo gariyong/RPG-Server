@@ -3,8 +3,10 @@ package com.aporia;
 import java.util.Objects;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.event.*;
 
-public class Main extends JavaPlugin {
+// Listener: 특정 이벤트를 정의했을 때, 플레이어의 행동을 감지
+public class Main extends JavaPlugin implements Listener{
     @Override
     public void onEnable() {
         getLogger().info("MyPlugin has been enabled!");
