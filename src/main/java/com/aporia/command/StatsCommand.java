@@ -9,14 +9,14 @@ import com.aporia.player.PlayerData;
 public class StatsCommand implements CommandExecutor{
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        // 명령어가 "스탯"인 경우에만 실행
+        // 명령어가 "스텟"인 경우에만 실행
         if(cmd.getName().equalsIgnoreCase("스텟")){
             // 명령어 실행 주체가 플레이어인지 확인
             if(sender instanceof Player){
                 Player player = (Player) sender;
-                player.sendMessage("스탯 명령어 실행됨");
+                player.sendMessage("스텟 명령어 실행됨");
 
-                // 플레이어의 스탯 정보를 가져와서 출력
+                // 플레이어의 스텟 정보를 가져와서 출력
                 PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(player.getUniqueId());
                 player.sendMessage("레벨: " + playerData.getLevel());
                 player.sendMessage("경험치: " + playerData.getExp());

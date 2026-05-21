@@ -15,15 +15,15 @@ public class Main extends JavaPlugin{
 
          // 이벤트 리스너 등록
         getServer().getPluginManager().registerEvents(new com.aporia.player.PlayerListener(), this);
-        
+
         // 명령어 등록
-        getCommand("stats").setExecutor(new StatsCommand());
-        getLogger().info("MyPlugin has been enabled!");
+        getCommand("스텟").setExecutor(new StatsCommand());
+        getLogger().info("플러그인 활성화");
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("Plugin Disabled!");
+        getLogger().info("플러그인 비활성화");
     }
 
     // 싱글톤 반환
