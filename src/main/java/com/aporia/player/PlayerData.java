@@ -2,7 +2,7 @@ package com.aporia.player;
 
 import java.util.UUID;
 
-class PlayerData {
+public class PlayerData {
     // uid로 유저 데이터 관리
     private final UUID uuid;
   
