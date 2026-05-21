@@ -8,8 +8,8 @@ public class PlayerManager {
     private final HashMap<UUID, PlayerData> playerDataMap = new HashMap<>();
     
     // 플레이어 생성
-    public void createPlayer(UUID uuid){
-        playerDataMap.put(uuid, new PlayerData(uuid));
+    public void createPlayer(PlayerData playerData){
+        playerDataMap.put(playerData.getUuid(), playerData);
     }
 
     // 플레이어 데이터 반환

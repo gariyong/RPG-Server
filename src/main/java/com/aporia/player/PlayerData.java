@@ -18,6 +18,14 @@ public class PlayerData {
         attack = 10;
     }
 
+    // 플레이어 데이터 전체 생성자
+    public PlayerData(UUID uuid, int level, long exp, int attack){
+        this.uuid = uuid;
+        this.level = level;
+        this.exp = exp;
+        this.attack = attack;
+    }
+
     // uid 반환
     public UUID getUuid(){
         return this.uuid;

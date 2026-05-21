@@ -7,7 +7,7 @@ import com.aporia.Main;
 import com.aporia.player.PlayerData;
 
 public class StatsCommand implements CommandExecutor{
-    @Override
+    @Override // 명령어 실행 시 호출되는 메소드
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         // 명령어가 "스텟"인 경우에만 실행
         if(cmd.getName().equalsIgnoreCase("스텟")){
