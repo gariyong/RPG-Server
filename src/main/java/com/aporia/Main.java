@@ -12,6 +12,9 @@ public class Main extends JavaPlugin{
         instance = this;
         playerManager = new PlayerManager();    // 플러그인 실행 시 playerManager 생성
 
+         // 이벤트 리스너 등록
+        getServer().getPluginManager().registerEvents(new com.aporia.player.PlayerListener(), this);
+
         getLogger().info("MyPlugin has been enabled!");
     }
 
@@ -20,7 +23,7 @@ public class Main extends JavaPlugin{
         getLogger().info("Plugin Disabled!");
     }
 
-    // Main 싱글톤 반환
+    // 싱글톤 반환
     public static Main getMain(){
         return instance;
     }
