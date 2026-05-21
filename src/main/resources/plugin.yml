@@ -4,6 +4,6 @@ main: com.aporia.Main
 api-version: '1.21'
 description: Example Plugin
 commands:
-  stats:
+  스텟:
     description: 플레이어의 스텟을 보여줍니다.
     usage: /스텟
