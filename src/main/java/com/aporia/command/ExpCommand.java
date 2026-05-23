@@ -45,7 +45,7 @@ public class ExpCommand implements CommandExecutor{
 
         // 플레이어 데이터 가져온 후, 경험치 추가
         PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(((Player) sender).getUniqueId());
-        Main.getMain().getLevelManager().addExp(playerData, amount);
+        Main.getMain().getLevelManager().addExp((Player) sender, playerData, amount);
         sender.sendMessage("경험치를 획득하였습니다.");
 
         return true;
