@@ -1,3 +1,14 @@
+error id: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/Main.java:com/aporia/Main#getCommand#
+file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/Main.java
+empty definition using pc, found symbol in pc: com/aporia/Main#getCommand#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 1009
+uri: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/Main.java
+text:
+```scala
 package com.aporia;
 
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,8 +39,8 @@ public class Main extends JavaPlugin{
         getServer().getPluginManager().registerEvents(new com.aporia.player.PlayerListener(), this);
 
         // 명령어 등록
-        getCommand("stats").setExecutor(new StatsCommand());
-        getCommand("exp").setExecutor(new ExpCommand());
+        @@getCommand("스텟").setExecutor(new StatsCommand());
+        getCommand("").setExecutor(new ExpCommand());
         getLogger().info("플러그인 활성화");
     }
 
@@ -58,3 +69,10 @@ public class Main extends JavaPlugin{
         return levelManager;
     }
 }
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: com/aporia/Main#getCommand#

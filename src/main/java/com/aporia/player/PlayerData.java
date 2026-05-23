@@ -51,6 +51,10 @@ public class PlayerData {
         this.exp = exp;
     }
 
+    public long getNeedExp(){
+        return level * 1000L; // 예시로 레벨당 필요한 경험치를 1000으로 설정
+    }
+
     // 공격력 반환
     public int getAttack(){
         return attack;
