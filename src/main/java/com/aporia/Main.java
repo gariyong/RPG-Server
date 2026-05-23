@@ -8,6 +8,8 @@ import com.aporia.command.ExpCommand;
 import com.aporia.player.PlayerManager;
 import com.aporia.level.LevelManager;
 
+import com.aporia.player.PlayerListener;
+import com.aporia.monster.MonsterListener;
 
 import com.aporia.data.PlayerDataStorage;
 
@@ -25,7 +27,9 @@ public class Main extends JavaPlugin{
         levelManager = new LevelManager(); // levelManager 생성
 
          // 이벤트 리스너 등록
-        getServer().getPluginManager().registerEvents(new com.aporia.player.PlayerListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerListener(), this);
+        getServer().getPluginManager().registerEvents(new MonsterListener(), this);
+
 
         // 명령어 등록
         getCommand("stats").setExecutor(new StatsCommand());
