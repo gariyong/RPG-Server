@@ -1,3 +1,14 @@
+error id: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/data/PlayerDataStorage.java:_empty_/FileConfiguration#
+file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/data/PlayerDataStorage.java
+empty definition using pc, found symbol in pc: _empty_/FileConfiguration#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 1850
+uri: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/data/PlayerDataStorage.java
+text:
+```scala
 package com.aporia.data;
 
 import java.util.UUID;
@@ -60,10 +71,10 @@ public class PlayerDataStorage {
     File playerDataFile = new File(Main.getMain().getDataFolder(), "playerdatas/" + playerData.getUuid().toString() + ".yml");
     
     // 플레이어 데이터 저장
-    FileConfiguration config = YamlConfiguration.loadConfiguration(playerDataFile);
-    config.set("level", playerData.getLevel());
-    config.set("exp", playerData.getExp());
-    config.set("attack", playerData.getAttack());
+    F@@ileConfiguration config = YamlConfiguration.loadConfiguration(playerDataFile);
+    config.set("Level", playerData.getLevel());
+    config.set("Exp", playerData.getExp());
+    config.set("Attack", playerData.getAttack());
 
     try {
         config.save(playerDataFile);
@@ -72,3 +83,9 @@ public class PlayerDataStorage {
     }
   }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: _empty_/FileConfiguration#

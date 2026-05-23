@@ -1,3 +1,14 @@
+error id: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/command/StatsCommand.java:_empty_/PlayerData#setLevel#
+file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/command/StatsCommand.java
+empty definition using pc, found symbol in pc: _empty_/PlayerData#setLevel#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 778
+uri: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/command/StatsCommand.java
+text:
+```scala
 package com.aporia.command;
 
 import org.bukkit.entity.Player;
@@ -17,6 +28,8 @@ public class StatsCommand implements CommandExecutor{
 
                 // 플레이어의 스텟 정보를 가져와서 출력
                 PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(player.getUniqueId());
+                playerData.setLe@@vel(123);
+                playerData.setAttack(999);
                 player.sendMessage("레벨: " + playerData.getLevel());
                 player.sendMessage("경험치: " + playerData.getExp());
                 player.sendMessage("공격력: " + playerData.getAttack());
@@ -30,3 +43,10 @@ public class StatsCommand implements CommandExecutor{
         return false;
     }
 }
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: _empty_/PlayerData#setLevel#

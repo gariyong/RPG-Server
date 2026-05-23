@@ -21,7 +21,14 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e){
-    // 플레이어가 서버에서 나갈 때마다 플레이어 데이터 삭제
-    Main.getMain().getPlayerManager().removePlayer(e.getPlayer().getUniqueId());
+    // 플레이어 uuid
+    UUID uuid = e.getPlayer().getUniqueId();
+    
+    // 플레이어 데이터 매니저에서 플레이어 데이터 가져오기
+    PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(uuid);
+
+    // 플레이어 데이터 저장 및 매니저에서 삭제
+    Main.getMain().getPlayerDataStorage().savePlayerData(playerData);
+    Main.getMain().getPlayerManager().removePlayer(uuid);
   }
 }
