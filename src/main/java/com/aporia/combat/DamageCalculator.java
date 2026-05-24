@@ -1,7 +1,5 @@
 package com.aporia.combat;
 
-import com.aporia.player.PlayerData;
-
 public class DamageCalculator {
   // 플레이어 공격 데미지 계산
   public double calculatePlayerDamage(int attack, int defense){
