@@ -1,5 +1,6 @@
 package com.aporia.level;
 
+import com.aporia.Main;
 import com.aporia.player.PlayerData;
 
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -34,7 +35,13 @@ public class LevelManager {
         if(needExp <= playerData.getExp()){
             playerData.setExp(playerData.getExp() - needExp);
             playerData.setLevel(playerData.getLevel() + 1);
+
             playerData.setAttack(playerData.getAttack() + 5);
+            playerData.setMaxHealth(playerData.getMaxHealth() + 20);
+            playerData.setDefense(playerData.getDefense() + 1);
+
+            // 수정된 스텟을 데이터에 저장
+            Main.getMain().getPlayerStatManager().applyStats(player, playerData);
 
             // 레벨업 메시지 출력
             player.sendMessage(Component.text("레벨업!").color(NamedTextColor.GOLD));
