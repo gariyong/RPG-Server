@@ -15,16 +15,21 @@ import org.bukkit.attribute.AttributeInstance;
 public class MonsterManager {
     // 몬스터 레벨을 저장하는 NamespacedKey
   private final NamespacedKey levelKey;
+  private final NamespacedKey defenseKey;
 
   public MonsterManager(){
     levelKey = new NamespacedKey(Main.getMain(), "monster_level");
+    defenseKey = new NamespacedKey(Main.getMain(), "monster_defense");
   }
 
   // 몬스터 특성 설정
   public void setupMonster(LivingEntity entity, int level){
+    int defense = level * 3;
+    
     // 몬스터의 레벨을 PersistentDataContainer에 저장
     PersistentDataContainer container = entity.getPersistentDataContainer();
     container.set(levelKey, PersistentDataType.INTEGER, level);
+    container.set(defenseKey, PersistentDataType.INTEGER, defense);
 
     double maxHealth = 20 + (level - 1) * 5; // 레벨에 따라 최대 체력 증가
     AttributeInstance attribute = entity.getAttribute(Attribute.MAX_HEALTH); // 몬스터의 최대 체력 속성 가져오기
@@ -52,5 +57,17 @@ public class MonsterManager {
     }
 
     return level;
+  }
+
+  public int getMonsterDefense(LivingEntity entity){
+    PersistentDataContainer container = entity.getPersistentDataContainer();
+
+    Integer defense = container.get(defenseKey, PersistentDataType.INTEGER);
+
+    if(defense == null){
+      return 0;
+    }
+
+    return defense;
   }
 }

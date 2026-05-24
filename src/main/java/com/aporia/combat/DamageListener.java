@@ -46,8 +46,11 @@ public class DamageListener implements Listener {
         // PlayerData 가져오기
         PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(player.getUniqueId());
 
-        // 데미지 계산
-        double damage = Main.getMain().getDamageCalculator().calculatePlayerDamage(playerData);
+        // Monster 방어력 가져오기
+        int defense = Main.getMain().getMonsterManager().getMonsterDefense(livingEntity);
+
+         // 데미지 계산
+        double damage = Main.getMain().getDamageCalculator().calculatePlayerDamage(playerData.getAttack(), defense);
 
         // 최대 체력 Attribute 가져오기
         AttributeInstance attribute = livingEntity.getAttribute(Attribute.MAX_HEALTH);
@@ -84,9 +87,12 @@ public class DamageListener implements Listener {
         // 몬스터 레벨 가져오기
         int level = Main.getMain().getMonsterManager().getMonsterLevel(monster);
 
-        // 몬스터 데미지 계산
-        double damage = Main.getMain().getDamageCalculator().calculateMonsterDamage(level);
+        // 플레이어 데이터 가져오기
+        PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(player.getUniqueId());
 
+        // 데미지 계산
+        double damage = Main.getMain().getDamageCalculator().calculateMonsterDamage(level * 5, playerData.getDefense());
+        
         // 데미지 적용
         e.setDamage(damage);
 
