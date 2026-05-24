@@ -1,3 +1,14 @@
+error id: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/combat/DamageListener.java:_empty_/EntityDamageByEntityEvent#getDamager#
+file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/combat/DamageListener.java
+empty definition using pc, found symbol in pc: _empty_/EntityDamageByEntityEvent#getDamager#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 807
+uri: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/combat/DamageListener.java
+text:
+```scala
 package com.aporia.combat;
 
 import com.aporia.Main;
@@ -28,7 +39,7 @@ public class DamageListener implements Listener {
         }
 
         // 몬스터 공격
-        else if(e.getDamager() instanceof LivingEntity monster && e.getEntity() instanceof Player player){
+        else if(e.getDama@@ger() instanceof LivingEntity monster && e.getEntity() instanceof Player player){
             handleMonsterAttack(monster, player, e);
         }
     }
@@ -99,3 +110,9 @@ public class DamageListener implements Listener {
         player.sendMessage("몬스터에게 " + damage + "데미지를 입었습니다.");
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: _empty_/EntityDamageByEntityEvent#getDamager#

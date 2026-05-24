@@ -49,7 +49,15 @@ public class PlayerDataStorage {
     
     // 플레이어 데이터 불러오기
     FileConfiguration config = YamlConfiguration.loadConfiguration(playerDataFile);
+
+    // 추가된 스텟을 데이터에 저장
     addMissingValues(config);
+
+    try{
+        config.save(playerDataFile);
+    }catch(Exception e){
+        e.printStackTrace();
+    }
 
     int level = config.getInt("level");
     long exp = config.getLong("exp");
