@@ -76,8 +76,18 @@ public class PlayerData {
         return defense;
     }
 
+    // 방어력 설정
+    public void setDefense(int defense){
+        this.defense = defense;
+    }
+
     // 최대 체력 반환
     public int getMaxHealth(){
         return maxHealth;
+    }
+
+    // 최대 체력 설정
+    public void setMaxHealth(int maxHealth){
+        this.maxHealth = maxHealth;
     }
 }
