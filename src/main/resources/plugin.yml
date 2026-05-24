@@ -10,3 +10,6 @@ commands:
   exp:
     description: 경험치 명령어
     usage: /exp
+  spawnmob:
+    description: 몬스터 소환 명령어
+    usage: /spawnmob <레벨>

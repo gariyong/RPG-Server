@@ -1,3 +1,14 @@
+error id: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/combat/DamageListener.java:_empty_/Component#text#color#
+file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/combat/DamageListener.java
+empty definition using pc, found symbol in pc: _empty_/Component#text#color#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 1908
+uri: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/combat/DamageListener.java
+text:
+```scala
 package com.aporia.combat;
 
 import com.aporia.Main;
@@ -22,19 +33,11 @@ public class DamageListener implements Listener {
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent e){
 
-        // 플레이어 공격
-        if(e.getDamager() instanceof Player player){
-            handlePlayerAttack(player, e);
+        // 공격자가 플레이어인지 확인
+        if(!(e.getDamager() instanceof Player player)){
+            return;
         }
 
-        // 몬스터 공격
-        if(e.getDamager() instanceof LivingEntity monster && e.getEntity() instanceof Player player){
-            handleMonsterAttack(monster, player, e);
-        }
-    }
-
-    // 플레이어 공격 메서드
-    private void handlePlayerAttack(Player player, EntityDamageByEntityEvent e){
         // 피해 대상
         Entity damaged = e.getEntity();
 
@@ -78,23 +81,15 @@ public class DamageListener implements Listener {
 
         // 체력 출력
         player.sendMessage( Component.text("체력: " + (int)Math.ceil(nextHealth) + " / " 
-                            + (int)Math.ceil(maxHealth)).color(NamedTextColor.RED));
+                            + (int)Math.ceil(maxHealth)).c@@olor(NamedTextColor.RED));
 
         // 데미지 출력
         player.sendMessage(Component.text(damage + "의 피해를 입혔습니다.").color(NamedTextColor.YELLOW));
     }
-
-    // 몬스터 공격 메서드
-    private void handleMonsterAttack(LivingEntity monster, Player player, EntityDamageByEntityEvent e){
-        // 몬스터 레벨 가져오기
-        int level = Main.getMain().getMonsterManager().getMonsterLevel(monster);
-
-        // 몬스터 공격력 계산
-        double damage = level * 5;
-
-        // 데미지 적용
-        e.setDamage(damage);
-
-        player.sendMessage("몬스터에게 " + damage + "데미지를 입었습니다.");
-    }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: _empty_/Component#text#color#
