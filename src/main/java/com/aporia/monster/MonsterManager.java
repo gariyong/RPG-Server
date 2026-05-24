@@ -20,6 +20,7 @@ public class MonsterManager {
     levelKey = new NamespacedKey(Main.getMain(), "monster_level");
   }
 
+  // 몬스터 특성 설정
   public void setupMonster(LivingEntity entity, int level){
     // 몬스터의 레벨을 PersistentDataContainer에 저장
     PersistentDataContainer container = entity.getPersistentDataContainer();
@@ -40,6 +41,7 @@ public class MonsterManager {
     entity.setCustomNameVisible(true);
   }
 
+  // 몬스터 레벨 반환
   public int getMonsterLevel(LivingEntity entity){
     PersistentDataContainer container = entity.getPersistentDataContainer();
 
