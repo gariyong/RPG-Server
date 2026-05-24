@@ -9,6 +9,8 @@ public class PlayerData {
     private int level;
     private long exp;
     private int attack;
+    private int maxHealth;
+    private int defense;
 
     // 플레이어 데이터 초기 생성자
     public PlayerData(UUID uuid){
@@ -16,14 +18,18 @@ public class PlayerData {
         level = 1;
         exp = 0;
         attack = 10;
+        maxHealth = 100;
+        defense = 5;
     }
 
     // 플레이어 데이터 전체 생성자
-    public PlayerData(UUID uuid, int level, long exp, int attack){
+    public PlayerData(UUID uuid, int level, long exp, int attack, int defense, int maxHealth){
         this.uuid = uuid;
         this.level = level;
         this.exp = exp;
         this.attack = attack;
+        this.defense = defense;
+        this.maxHealth = maxHealth;
     }
 
     // uid 반환
@@ -63,5 +69,15 @@ public class PlayerData {
     // 공격력 설정
     public void setAttack(int attack){
         this.attack = attack;
+    }
+
+    // 방어력 반환
+    public int getDefense(){
+        return defense;
+    }
+
+    // 최대 체력 반환
+    public int getMaxHealth(){
+        return maxHealth;
     }
 }

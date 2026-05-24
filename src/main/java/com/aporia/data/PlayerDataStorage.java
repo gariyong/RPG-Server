@@ -32,6 +32,8 @@ public class PlayerDataStorage {
             config.set("level", 1);
             config.set("exp", 0);
             config.set("attack", 10);
+            config.set("defense", 5);
+            config.set("maxHealth", 100);
             config.save(playerDataFile);
 
         } catch (Exception e) {
@@ -50,9 +52,11 @@ public class PlayerDataStorage {
     int level = config.getInt("level");
     long exp = config.getLong("exp");
     int attack = config.getInt("attack");
+    int defense = config.getInt("defense");
+    int maxHealth = config.getInt("maxHealth");
 
     // 불러온 데이터를 PlayerData 객체로 반환
-    return new PlayerData(uuid, level, exp, attack);
+    return new PlayerData(uuid, level, exp, attack, defense, maxHealth);
   }
 
   public void savePlayerData(PlayerData playerData){
@@ -64,6 +68,8 @@ public class PlayerDataStorage {
     config.set("level", playerData.getLevel());
     config.set("exp", playerData.getExp());
     config.set("attack", playerData.getAttack());
+    config.set("defense", playerData.getDefense());
+    config.set("maxHealth", playerData.getMaxHealth());
 
     try {
         config.save(playerDataFile);
