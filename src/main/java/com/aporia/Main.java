@@ -9,6 +9,7 @@ import com.aporia.command.SpawnMobCommand;
 import com.aporia.player.PlayerManager;
 import com.aporia.level.LevelManager;
 import com.aporia.monster.MonsterManager;
+import com.aporia.player.PlayerStatManager;
 
 import com.aporia.player.PlayerListener;
 import com.aporia.monster.MonsterListener;
@@ -22,6 +23,7 @@ public class Main extends JavaPlugin{
     private PlayerDataStorage playerDataStorage; // playerDataStorage
     private LevelManager levelManager; // levelManager
     private MonsterManager monsterManager; // monsterManager
+    private PlayerStatManager playerStatManager;
 
     @Override
     public void onEnable() {
@@ -30,6 +32,7 @@ public class Main extends JavaPlugin{
         monsterManager = new MonsterManager(); // monsterManager 생성
         playerDataStorage = new PlayerDataStorage(); // playerDataStorage 생성
         levelManager = new LevelManager(); // levelManager 생성
+        playerStatManager = new PlayerStatManager();
 
          // 이벤트 리스너 등록
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
@@ -71,5 +74,10 @@ public class Main extends JavaPlugin{
     // MonsterManager 반환
     public MonsterManager getMonsterManager(){
         return monsterManager;
+    }
+
+    // PlayerStatManager 반환
+    public PlayerStatManager getPlayerStatManager(){
+        return playerStatManager;
     }
 }

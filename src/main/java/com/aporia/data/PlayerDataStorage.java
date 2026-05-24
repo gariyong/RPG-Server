@@ -49,6 +49,8 @@ public class PlayerDataStorage {
     
     // 플레이어 데이터 불러오기
     FileConfiguration config = YamlConfiguration.loadConfiguration(playerDataFile);
+    addMissingValues(config);
+
     int level = config.getInt("level");
     long exp = config.getLong("exp");
     int attack = config.getInt("attack");
@@ -75,6 +77,28 @@ public class PlayerDataStorage {
         config.save(playerDataFile);
     } catch (Exception e) {
         e.printStackTrace();
+    }
+  }
+
+  private void addMissingValues(FileConfiguration config){
+    if (!config.contains("level")) {
+        config.set("level", 1);
+    }
+
+    if (!config.contains("exp")) {
+        config.set("exp", 0);
+    }
+
+    if (!config.contains("attack")) {
+        config.set("attack", 10);
+    }
+
+    if (!config.contains("defense")) {
+        config.set("defense", 5);
+    }
+
+    if (!config.contains("maxHealth")) {
+        config.set("maxHealth", 100);
     }
   }
 }
