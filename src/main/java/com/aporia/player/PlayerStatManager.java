@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 
 public class PlayerStatManager {
   public void applyStats(Player player, PlayerData playerData){
+
+    // Attribute 가져오기
     AttributeInstance attribute = player.getAttribute(Attribute.MAX_HEALTH);
 
     if(attribute == null){
