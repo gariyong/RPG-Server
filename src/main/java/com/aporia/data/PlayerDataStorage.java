@@ -34,6 +34,9 @@ public class PlayerDataStorage {
             config.set("attack", 10);
             config.set("defense", 5);
             config.set("maxHealth", 100);
+            config.set("critChance", 0);
+            config.set("critDamage", 150);
+            
             config.save(playerDataFile);
 
         } catch (Exception e) {
@@ -64,9 +67,11 @@ public class PlayerDataStorage {
     int attack = config.getInt("attack");
     int defense = config.getInt("defense");
     int maxHealth = config.getInt("maxHealth");
+    double critChance = config.getDouble("critChance");
+    double critDamage = config.getDouble("critDamage");
 
     // 불러온 데이터를 PlayerData 객체로 반환
-    return new PlayerData(uuid, level, exp, attack, defense, maxHealth);
+    return new PlayerData(uuid, level, exp, attack, defense, maxHealth, critChance, critDamage);
   }
 
   public void savePlayerData(PlayerData playerData){
@@ -80,6 +85,8 @@ public class PlayerDataStorage {
     config.set("attack", playerData.getAttack());
     config.set("defense", playerData.getDefense());
     config.set("maxHealth", playerData.getMaxHealth());
+    config.set("critChance", playerData.getCritChance());
+    config.set("critDamage", playerData.getCritDamage());
 
     try {
         config.save(playerDataFile);
@@ -107,6 +114,14 @@ public class PlayerDataStorage {
 
     if (!config.contains("maxHealth")) {
         config.set("maxHealth", 100);
+    }
+
+    if(!config.contains("critChance")){
+        config.set("critChance", 0);
+    }
+
+    if(!config.contains("critDamage")){
+        config.set("critDamage", 150);
     }
   }
 }
