@@ -49,8 +49,9 @@ public class DamageListener implements Listener {
         // Monster 방어력 가져오기
         int defense = Main.getMain().getMonsterManager().getMonsterDefense(livingEntity);
 
-         // 데미지 계산
-        double damage = Main.getMain().getDamageCalculator().calculatePlayerDamage(playerData.getAttack(), defense, playerData.getCritChance(), playerData.getCritDamage());
+        // 데미지 계산
+        DamageResult result = Main.getMain().getDamageCalculator().calculatePlayerDamage(playerData.getAttack(), defense, playerData.getCritChance(), playerData.getCritDamage());
+        double damage = result.getDamage();
 
         // 최대 체력 Attribute 가져오기
         AttributeInstance attribute = livingEntity.getAttribute(Attribute.MAX_HEALTH);
@@ -77,6 +78,11 @@ public class DamageListener implements Listener {
         // 체력 출력
         player.sendMessage( Component.text("체력: " + (int)Math.ceil(nextHealth) + " / " 
                             + (int)Math.ceil(maxHealth)).color(NamedTextColor.RED));
+
+        // 치명타 적용 여부 출력
+        if(result.isCritical()){
+            player.sendMessage(Component.text("치명타!").color(NamedTextColor.GOLD));
+        }
 
         // 데미지 출력
         player.sendMessage(Component.text(damage + "의 피해를 입혔습니다.").color(NamedTextColor.YELLOW));

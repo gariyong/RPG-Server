@@ -3,15 +3,19 @@ package com.aporia.combat;
 public class DamageCalculator {
   
   // 플레이어 공격 데미지 계산
-  public double calculatePlayerDamage(int attack, int defense, double critChance, double critDamage){
-    double finalAttack = attack *(100.0 / (100 + defense));
+  public DamageResult calculatePlayerDamage(int attack, int defense, double critChance, double critDamage){
+    double finalDamage = attack *(100.0 / (100 + defense));
     double randomValue = Math.random() * 100;
 
+    boolean critical = false;
+
     if(randomValue < critChance){
-      finalAttack *= (critDamage / 100.0);
+      critical = true;
+
+      finalDamage *= (critDamage / 100.0);
     }
 
-    return finalAttack;
+    return new DamageResult(finalDamage, critical);
   }
 
   // 몬스터 공격 데미지 계산
