@@ -2,6 +2,8 @@ package com.aporia.item;
 
 import java.util.HashMap;
 
+import org.bukkit.Material;
+
 public class EquipmentManager {
   private final HashMap<String, EquipmentData> equipmentMap = new HashMap<>();
 
@@ -27,6 +29,7 @@ public class EquipmentManager {
                         "iron_sword",
                         "철검",
                         EquipmentType.WEAPON,
+                        Material.IRON_SWORD,
                         10,
                         0,
                         5,
@@ -39,6 +42,7 @@ public class EquipmentManager {
                         "iron_armor",
                         "철갑옷",
                         EquipmentType.ARMOR,
+                        Material.IRON_CHESTPLATE,
                         0,
                         10,
                         0,
