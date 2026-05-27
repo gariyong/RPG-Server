@@ -3,7 +3,7 @@ package com.aporia.item;
 import java.util.HashMap;
 
 public class EquipmentManager {
-  private final HashMap<String, EquipmentData> equipmentMap = new HashMap();
+  private final HashMap<String, EquipmentData> equipmentMap = new HashMap<>();
 
   public EquipmentManager(){
     registerDefaultEquipments();
