@@ -10,6 +10,7 @@ import com.aporia.player.PlayerManager;
 import com.aporia.level.LevelManager;
 import com.aporia.monster.MonsterManager;
 import com.aporia.player.PlayerStatManager;
+import com.aporia.item.EquipmentManager;
 
 import com.aporia.player.PlayerListener;
 import com.aporia.monster.MonsterListener;
@@ -25,7 +26,8 @@ public class Main extends JavaPlugin{
     private LevelManager levelManager; // levelManager
     private MonsterManager monsterManager; // monsterManager
     private PlayerStatManager playerStatManager; // playerStatManager
-    private DamageCalculator damageCalculator;
+    private DamageCalculator damageCalculator; // damageCalculator
+    private EquipmentManager equipmentManager;
 
     @Override
     public void onEnable() {
@@ -36,6 +38,7 @@ public class Main extends JavaPlugin{
         levelManager = new LevelManager(); // levelManager 생성
         playerStatManager = new PlayerStatManager(); // PlayerStatManager 생성
         damageCalculator = new DamageCalculator(); // DamageCalculator 생성
+        equipmentManager = new EquipmentManager();
 
          // 이벤트 리스너 등록
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
@@ -87,5 +90,10 @@ public class Main extends JavaPlugin{
     // DamageCalculator 반환
     public DamageCalculator getDamageCalculator(){
         return damageCalculator;
+    }
+
+    // EquipmentManager 반환
+    public EquipmentManager getEquipmentManager(){
+        return equipmentManager;
     }
 }
