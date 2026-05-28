@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.aporia.command.StatsCommand;
 import com.aporia.command.ExpCommand;
 import com.aporia.command.SpawnMobCommand;
+import com.aporia.item.GetItemCommand;
 
 import com.aporia.player.PlayerManager;
 import com.aporia.level.LevelManager;
@@ -12,6 +13,7 @@ import com.aporia.monster.MonsterManager;
 import com.aporia.player.PlayerStatManager;
 import com.aporia.item.EquipmentManager;
 import com.aporia.item.CustomItemManager;
+import com.aporia.item.EquipmentStatManager;
 
 import com.aporia.player.PlayerListener;
 import com.aporia.monster.MonsterListener;
@@ -30,6 +32,7 @@ public class Main extends JavaPlugin{
     private DamageCalculator damageCalculator; // damageCalculator
     private EquipmentManager equipmentManager; // equipmentManager
     private CustomItemManager customItemManager; // customItemManager
+    private EquipmentStatManager equipmentStatManager; // equipmentStatManager
 
     @Override
     public void onEnable() {
@@ -40,8 +43,9 @@ public class Main extends JavaPlugin{
         levelManager = new LevelManager(); // levelManager 생성
         playerStatManager = new PlayerStatManager(); // PlayerStatManager 생성
         damageCalculator = new DamageCalculator(); // DamageCalculator 생성
-        equipmentManager = new EquipmentManager(); // equipmentManager 생성
-        customItemManager = new CustomItemManager(); // customItemManger 생성
+        equipmentManager = new EquipmentManager(); // EquipmentManager 생성
+        customItemManager = new CustomItemManager(); // CustomItemManger 생성
+        equipmentStatManager = new EquipmentStatManager(); // EquipmentStatManager 생성
 
          // 이벤트 리스너 등록
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
@@ -52,6 +56,7 @@ public class Main extends JavaPlugin{
         getCommand("stats").setExecutor(new StatsCommand());
         getCommand("exp").setExecutor(new ExpCommand());
         getCommand("spawnmob").setExecutor(new SpawnMobCommand());
+        getCommand("getitem").setExecutor(new GetItemCommand());
         getLogger().info("플러그인 활성화");
     }
 
@@ -103,5 +108,10 @@ public class Main extends JavaPlugin{
     // CustomItemManager 반환
     public CustomItemManager getCustomItemManager(){
         return customItemManager;
+    }
+
+    // EquipmentStatManager 반환
+    public EquipmentStatManager getEquipmentStatManager(){
+        return equipmentStatManager;
     }
 }

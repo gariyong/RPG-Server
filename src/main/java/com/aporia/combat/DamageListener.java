@@ -49,8 +49,11 @@ public class DamageListener implements Listener {
         // Monster 방어력 가져오기
         int defense = Main.getMain().getMonsterManager().getMonsterDefense(livingEntity);
 
+        // 스텟 공격력 가져오기
+        int attack = Main.getMain().getEquipmentStatManager().getFinalAttack(player, playerData);
+
         // 데미지 계산
-        DamageResult result = Main.getMain().getDamageCalculator().calculatePlayerDamage(playerData.getAttack(), defense, playerData.getCritChance(), playerData.getCritDamage());
+        DamageResult result = Main.getMain().getDamageCalculator().calculatePlayerDamage(attack, defense, playerData.getCritChance(), playerData.getCritDamage());
         double damage = result.getDamage();
 
         // 최대 체력 Attribute 가져오기
