@@ -31,29 +31,29 @@ public class CustomItemManager {
     }
 
     // 아이템 이름 설정
-    itemMeta.displayName(Component.text(equipmentData.getName()).color(NamedTextColor.GOLD));
+    itemMeta.displayName(Component.text(equipmentData.getName()).color(NamedTextColor.WHITE));
 
     // 아이템 설명 설정
     List<Component>  lore = new ArrayList<>();
 
     // 공격력
     if(equipmentData.getAttack() != 0){
-        lore.add(Component.text("공격력: +" + equipmentData.getAttack()));
+        lore.add(Component.text("공격력: +" + equipmentData.getAttack()).color(NamedTextColor.WHITE));
     }
 
     // 방어력
     if(equipmentData.getDefense() != 0){
-        lore.add(Component.text("방어력: +" + equipmentData.getDefense()));
+        lore.add(Component.text("방어력: +" + equipmentData.getDefense()).color(NamedTextColor.WHITE));
     }
 
     // 치명타 확률
     if(equipmentData.getCritChance() != 0){
-        lore.add(Component.text("치명타 확률: +" + equipmentData.getCritChance() + "%"));
+        lore.add(Component.text("치명타 확률: +" + equipmentData.getCritChance() + "%").color(NamedTextColor.WHITE));
     }
 
     // 치명타 데미지
     if(equipmentData.getCritDamage() != 0){
-        lore.add(Component.text("치명타 데미지: +" + equipmentData.getCritDamage() + "%"));
+        lore.add(Component.text("치명타 데미지: +" + equipmentData.getCritDamage() + "%").color(NamedTextColor.WHITE));
     }
 
     itemMeta.lore(lore);
