@@ -4,6 +4,8 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
 
+import com.aporia.Main;
+
 public class PlayerStatManager {
   public void applyStats(Player player, PlayerData playerData){
 
@@ -15,9 +17,10 @@ public class PlayerStatManager {
     }
 
     // 최대 체력 설정
-    attribute.setBaseValue(playerData.getMaxHealth());
+    int finalHealth = Main.getMain().getEquipmentStatManager().getFinalMaxHealth(player, playerData);
+    attribute.setBaseValue(finalHealth);
 
     // 현재 체력 회복
-    player.setHealth(playerData.getMaxHealth());
+    player.setHealth(finalHealth);
   }
 }

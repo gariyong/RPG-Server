@@ -99,8 +99,11 @@ public class DamageListener implements Listener {
         // 플레이어 데이터 가져오기
         PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(player.getUniqueId());
 
+        // 플레이어 방어력 가져오기
+        int defense = Main.getMain().getEquipmentStatManager().getFinalDefense(player, playerData);
+
         // 데미지 계산
-        double damage = Main.getMain().getDamageCalculator().calculateMonsterDamage(level * 5, playerData.getDefense());
+        double damage = Main.getMain().getDamageCalculator().calculateMonsterDamage(level * 5, defense);
         
         // 데미지 적용
         e.setDamage(damage);

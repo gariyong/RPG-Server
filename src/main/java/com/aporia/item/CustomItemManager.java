@@ -46,6 +46,11 @@ public class CustomItemManager {
         lore.add(Component.text("방어력: +" + equipmentData.getDefense()).color(NamedTextColor.WHITE));
     }
 
+    // 최대 체력
+    if(equipmentData.getMaxHealth() != 0){
+        lore.add(Component.text("최대 체력: +" + equipmentData.getMaxHealth()).color(NamedTextColor.WHITE));
+    }
+
     // 치명타 확률
     if(equipmentData.getCritChance() != 0){
         lore.add(Component.text("치명타 확률: +" + equipmentData.getCritChance() + "%").color(NamedTextColor.WHITE));

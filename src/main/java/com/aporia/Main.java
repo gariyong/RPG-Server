@@ -19,6 +19,7 @@ import com.aporia.player.PlayerListener;
 import com.aporia.monster.MonsterListener;
 import com.aporia.combat.DamageCalculator;
 import com.aporia.combat.DamageListener;
+import com.aporia.item.EquipmentListener;
 
 import com.aporia.data.PlayerDataStorage;
 
@@ -51,6 +52,7 @@ public class Main extends JavaPlugin{
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
         getServer().getPluginManager().registerEvents(new MonsterListener(), this);
         getServer().getPluginManager().registerEvents(new DamageListener(), this);
+        getServer().getPluginManager().registerEvents(new EquipmentListener(), this);
 
         // 명령어 등록
         getCommand("stats").setExecutor(new StatsCommand());

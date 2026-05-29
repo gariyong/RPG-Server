@@ -32,6 +32,7 @@ public class EquipmentManager {
                         Material.IRON_SWORD,
                         10,
                         0,
+                        0,
                         5,
                         150
                 )
@@ -39,12 +40,55 @@ public class EquipmentManager {
 
         registerEquipment(
                 new EquipmentData(
+                        "iron_helmet",
+                        "철 투구",
+                        EquipmentType.ARMOR,
+                        Material.IRON_HELMET,
+                        0,
+                        5,
+                        100,
+                        0,
+                        0
+                )
+        );
+
+        registerEquipment(
+                new EquipmentData(
                         "iron_armor",
-                        "철갑옷",
+                        "철 갑옷",
                         EquipmentType.ARMOR,
                         Material.IRON_CHESTPLATE,
                         0,
                         10,
+                        100,
+                        0,
+                        0
+                )
+        );
+
+        registerEquipment(
+                new EquipmentData(
+                        "iron_leggings",
+                        "철 레깅스",
+                        EquipmentType.ARMOR,
+                        Material.IRON_LEGGINGS,
+                        0,
+                        8,
+                        100,
+                        0,
+                        0
+                )
+        );
+
+        registerEquipment(
+                new EquipmentData(
+                        "iron_boots",
+                        "철 신발",
+                        EquipmentType.ARMOR,
+                        Material.IRON_BOOTS,
+                        0,
+                        2,
+                        100,
                         0,
                         0
                 )
