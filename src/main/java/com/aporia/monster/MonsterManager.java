@@ -4,9 +4,14 @@ import com.aporia.Main;
 
 import net.kyori.adventure.text.Component;
 
+import java.util.HashMap;
+import java.util.UUID;
+
+import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.attribute.AttributeInstance;
@@ -16,6 +21,8 @@ public class MonsterManager {
     // 몬스터 레벨을 저장하는 NamespacedKey
   private final NamespacedKey levelKey;
   private final NamespacedKey defenseKey;
+
+  private final HashMap<UUID, UUID> lastAttackerMap = new HashMap<>();
 
   public MonsterManager(){
     levelKey = new NamespacedKey(Main.getMain(), "monster_level");
@@ -69,5 +76,23 @@ public class MonsterManager {
     }
 
     return defense;
+  }
+
+  public void setLastAttacker(LivingEntity monster, Player player){
+    lastAttackerMap.put(monster.getUniqueId(), player.getUniqueId());
+  }
+
+  public Player getLastAttacker(LivingEntity monster){
+    UUID playerUUID = lastAttackerMap.get(monster.getUniqueId());
+
+    if(playerUUID == null){
+      return null;
+    }
+
+    return Bukkit.getPlayer(playerUUID);
+  }
+
+  public void removeLastAttacker(LivingEntity monster){
+    lastAttackerMap.remove(monster.getUniqueId());
   }
 }

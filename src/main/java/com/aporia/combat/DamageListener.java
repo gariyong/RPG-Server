@@ -1,6 +1,7 @@
 package com.aporia.combat;
 
 import com.aporia.Main;
+import com.aporia.player.FinalPlayerStats;
 import com.aporia.player.PlayerData;
 
 import net.kyori.adventure.text.Component;
@@ -46,11 +47,14 @@ public class DamageListener implements Listener {
         // PlayerData 가져오기
         PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(player.getUniqueId());
 
+        // 스텟 가져오기
+        FinalPlayerStats stats = Main.getMain().getEquipmentStatManager().calculateStats(player, playerData);
+        
         // Monster 방어력 가져오기
         int defense = Main.getMain().getMonsterManager().getMonsterDefense(livingEntity);
 
         // 스텟 공격력 가져오기
-        int attack = Main.getMain().getEquipmentStatManager().getFinalAttack(player, playerData);
+        int attack = stats.getAttack();
 
         // 데미지 계산
         DamageResult result = Main.getMain().getDamageCalculator().calculatePlayerDamage(attack, defense, playerData.getCritChance(), playerData.getCritDamage());
@@ -68,6 +72,9 @@ public class DamageListener implements Listener {
 
         // 최대 체력
         double maxHealth = attribute.getValue();
+
+        // 마지막 공격자
+        Main.getMain().getMonsterManager().setLastAttacker(livingEntity, player);
 
         // 다음 체력 계산
         double nextHealth = Math.max(0, currentHealth - damage);
@@ -99,8 +106,11 @@ public class DamageListener implements Listener {
         // 플레이어 데이터 가져오기
         PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(player.getUniqueId());
 
+        // 플레이어 스텟 가져오기
+        FinalPlayerStats stats = Main.getMain().getEquipmentStatManager().calculateStats(player, playerData);
+
         // 플레이어 방어력 가져오기
-        int defense = Main.getMain().getEquipmentStatManager().getFinalDefense(player, playerData);
+        int defense = stats.getDefense();
 
         // 데미지 계산
         double damage = Main.getMain().getDamageCalculator().calculateMonsterDamage(level * 5, defense);

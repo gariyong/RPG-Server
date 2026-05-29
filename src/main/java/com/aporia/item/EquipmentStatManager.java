@@ -11,7 +11,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import com.aporia.Main;
-
+import com.aporia.player.FinalPlayerStats;
 import com.aporia.player.PlayerData;
 
 public class EquipmentStatManager {
@@ -116,5 +116,16 @@ public class EquipmentStatManager {
 
   public int getFinalMaxHealth(Player player, PlayerData playerData){
     return playerData.getMaxHealth() + getEquipmentHealth(player);
+  }
+
+  public FinalPlayerStats calculateStats(Player player, PlayerData playerData){
+    int attack = playerData.getAttack() + getWeaponAttack(player);
+    int defense = playerData.getDefense() + getArmorDefense(player);
+    int maxHealth = playerData.getMaxHealth() + getEquipmentHealth(player);
+
+    double critChance = playerData.getCritChance();
+    double critDamage = playerData.getCritDamage();
+
+    return new FinalPlayerStats(attack, defense, maxHealth, critChance, critDamage);
   }
 }
