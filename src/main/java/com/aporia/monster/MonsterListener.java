@@ -1,6 +1,7 @@
 package com.aporia.monster;
 
 import com.aporia.Main;
+import com.aporia.item.EquipmentData;
 import com.aporia.player.PlayerData;
 
 import net.kyori.adventure.text.Component;
@@ -9,6 +10,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -34,6 +36,31 @@ public class MonsterListener implements Listener{
         long exp = getMonsterExp(e.getEntityType());
         Main.getMain().getLevelManager().addExp(killer, playerData, exp);
 
+        // 드랍 처리
+        int level = Main.getMain().getMonsterManager().getMonsterLevel((LivingEntity) e.getEntity());
+
+        for(DropData drop : Main.getMain().getMonsterDropManager().getDrops(level)){
+            // 확률 계산
+            double random = Math.random() * 100;
+
+            if(random > drop.getChance()) continue;
+
+            // 아이템 조회
+            EquipmentData equipmentData = Main.getMain().getEquipmentManager().getEquipmentData(drop.getItemId());
+            
+            if(equipmentData == null){
+                continue;
+            }
+
+            // 생성
+            ItemStack item = Main.getMain().getCustomItemManager().createItem(equipmentData);
+
+            // 드랍
+            e.getEntity().getWorld().dropItemNaturally(e.getEntity().getLocation(), item);
+        }
+
+        
+        
         // 경험치 획득 메시지 출력
         killer.sendMessage(Component.text("경험치 획득! (" + exp + ")").color(NamedTextColor.GOLD));
 

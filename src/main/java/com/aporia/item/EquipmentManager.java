@@ -34,7 +34,7 @@ public class EquipmentManager {
                         0,
                         0,
                         5,
-                        150
+                        0
                 )
         );
 

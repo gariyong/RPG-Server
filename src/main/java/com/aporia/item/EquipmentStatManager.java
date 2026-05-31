@@ -121,11 +121,32 @@ public class EquipmentStatManager {
   public FinalPlayerStats calculateStats(Player player, PlayerData playerData){
     int attack = playerData.getAttack() + getWeaponAttack(player);
     int defense = playerData.getDefense() + getArmorDefense(player);
+
     int maxHealth = playerData.getMaxHealth() + getEquipmentHealth(player);
 
-    double critChance = playerData.getCritChance();
-    double critDamage = playerData.getCritDamage();
+    double critChance = playerData.getCritChance() + getEquipmentCritChance(player);
+    double critDamage = playerData.getCritDamage() + getEquipmentCritDamage(player);
 
     return new FinalPlayerStats(attack, defense, maxHealth, critChance, critDamage);
+  }
+
+  public double getEquipmentCritChance(Player player){
+    EquipmentData equipmentData = getEquipmentData(player.getInventory().getItemInMainHand());
+
+    if(equipmentData == null){
+      return 0;
+    }
+
+    return equipmentData.getCritChance();
+  }
+
+  public double getEquipmentCritDamage(Player player){
+    EquipmentData equipmentData = getEquipmentData(player.getInventory().getItemInMainHand());
+
+    if(equipmentData == null){
+      return 0;
+    }
+
+    return equipmentData.getCritDamage();
   }
 }

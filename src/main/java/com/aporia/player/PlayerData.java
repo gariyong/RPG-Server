@@ -22,7 +22,7 @@ public class PlayerData {
         attack = 10;
         maxHealth = 100;
         defense = 5;
-        critChance = 0;
+        critChance = 5;
         critDamage = 150;
     }
 
