@@ -5,6 +5,7 @@ import com.aporia.Main;
 import net.kyori.adventure.text.Component;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -35,7 +36,17 @@ public class MonsterManager {
         5, 
         0, 
         50, 
-        10
+        10,
+        List.of(
+          new DropData(
+            "iron_sword",
+            5
+          ),
+          new DropData(
+            "iron_helmet",
+             10
+            )
+        )
       )
     );
 
@@ -48,7 +59,13 @@ public class MonsterManager {
         10, 
         5, 
         100, 
-        20
+        20,
+        List.of(
+          new DropData(
+            "iron_sword",
+             10
+            )
+        )
       )
     );
   }

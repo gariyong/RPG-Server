@@ -1,5 +1,7 @@
 package com.aporia.monster;
 
+import java.util.List;
+
 public class MonsterData{
     private final String id;
     private final String name;
@@ -12,7 +14,9 @@ public class MonsterData{
 
     private final long exp;
 
-    MonsterData(String id, String name, int level, int attack, int defense, int maxHealth, long exp){
+    private final List<DropData> drops;
+
+    MonsterData(String id, String name, int level, int attack, int defense, int maxHealth, long exp, List<DropData> drops){
         this.id = id;
         this.name = name;
         
@@ -23,6 +27,8 @@ public class MonsterData{
         this.maxHealth = maxHealth;
         
         this.exp = exp;
+
+        this.drops = drops;
     }
 
     // 몬스터 id 반환
@@ -58,5 +64,10 @@ public class MonsterData{
     // 몬스터 경험치 반환
     public long getExp(){
         return exp;
+    }
+
+    // 몬스터 드랍 테이블 반환
+    public List<DropData> getDrops(){
+        return drops;
     }
 }

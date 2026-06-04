@@ -12,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 
 public class MonsterListener implements Listener{
@@ -44,9 +43,8 @@ public class MonsterListener implements Listener{
         Main.getMain().getLevelManager().addExp(killer, playerData, exp);
 
         // 드랍 처리
-        int level = monsterData.getLevel();
 
-        for(DropData drop : Main.getMain().getMonsterDropManager().getDrops(level)){
+        for(DropData drop : monsterData.getDrops()){
             // 확률 계산
             double random = Math.random() * 100;
 

@@ -31,6 +31,8 @@ public class SpawnMobCommand implements CommandExecutor {
 
     if(data == null){
         sender.sendMessage("존재하지 않는 몬스터입니다.");
+        
+        return true;
     }
 
     // 몬스터 스폰 로직 (예시로 플레이어 위치에 좀비를 스폰하도록 설정)
