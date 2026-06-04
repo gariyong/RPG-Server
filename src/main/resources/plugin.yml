@@ -12,7 +12,7 @@ commands:
     usage: /exp
   spawnmob:
     description: 몬스터 소환 명령어
-    usage: /spawnmob <레벨>
+    usage: /spawnmob <monsterId>
   getitem:
    description: 아이템 생성 명령어
    usage: /getitem <itemId>
