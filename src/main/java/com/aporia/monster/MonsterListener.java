@@ -18,6 +18,13 @@ import org.bukkit.entity.LivingEntity;
 public class MonsterListener implements Listener{
     @EventHandler // 몬스터가 죽었을 때 실행되는 메소드
     public void onMonsterKill(EntityDeathEvent e){
+        // 몬스터 데이터 불러오기
+        MonsterData monsterData = Main.getMain().getMonsterManager().getMonsterData((LivingEntity)e.getEntity());
+
+        if(monsterData == null){
+            return;
+        }
+
         //  몬스터를 죽인 플레이어 가져오기
         Player killer = Main.getMain().getMonsterManager().getLastAttacker((LivingEntity)e.getEntity());
 
@@ -33,11 +40,11 @@ public class MonsterListener implements Listener{
         PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(killer.getUniqueId());
 
         // 경험치 추가
-        long exp = getMonsterExp(e.getEntityType());
+        long exp = monsterData.getExp();
         Main.getMain().getLevelManager().addExp(killer, playerData, exp);
 
         // 드랍 처리
-        int level = Main.getMain().getMonsterManager().getMonsterLevel((LivingEntity) e.getEntity());
+        int level = monsterData.getLevel();
 
         for(DropData drop : Main.getMain().getMonsterDropManager().getDrops(level)){
             // 확률 계산
@@ -66,21 +73,5 @@ public class MonsterListener implements Listener{
 
         // 경험치 지급 후 정리
         Main.getMain().getMonsterManager().removeLastAttacker((LivingEntity)e.getEntity());
-    }
-
-    // 몬스터 종류에 따른 경험치 양 반환 메소드
-    private long getMonsterExp(EntityType type){
-
-        // 몬스터 종류에 따라 경험치 양 반환
-        switch(type){
-            case ZOMBIE:
-                return 50;
-            case SKELETON:
-                return 70;
-            case CREEPER:
-                return 100;
-            default:
-                return 10;
-        }
     }
 }

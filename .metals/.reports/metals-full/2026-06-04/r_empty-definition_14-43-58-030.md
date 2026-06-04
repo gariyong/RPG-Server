@@ -1,3 +1,14 @@
+error id: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/monster/MonsterManager.java:_empty_/AttributeInstance#setBaseValue#
+file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/monster/MonsterManager.java
+empty definition using pc, found symbol in pc: _empty_/AttributeInstance#setBaseValue#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 1732
+uri: file:///C:/Users/happy/OneDrive/바탕%20화면/Server/RPG-Server/src/main/java/com/aporia/monster/MonsterManager.java
+text:
+```scala
 package com.aporia.monster;
 
 import com.aporia.Main;
@@ -24,12 +35,13 @@ public class MonsterManager {
   private final HashMap<String, MonsterData>monsterDataMap = new HashMap<>();
 
   public MonsterManager(){
-    idKey = new NamespacedKey(Main.getMain(), "monster_id");
+    levelKey = new NamespacedKey(Main.getMain(), "monster_level");
+    defenseKey = new NamespacedKey(Main.getMain(), "monster_defense");
 
     monsterDataMap.put(
       "zombie",
       new MonsterData(
-        "zombie",
+        "zimbie",
         "좀비",
         1,
         5, 
@@ -56,44 +68,45 @@ public class MonsterManager {
   // 몬스터 특성 설정
   public void setupMonster(LivingEntity entity, String id){    
     PersistentDataContainer container = entity.getPersistentDataContainer();
-    container.set(idKey, PersistentDataType.STRING, id);
-
-    MonsterData data = getMonsterData(id);
-
-    if(data == null){
-      return;
-    }
-
-    int attack = data.getAttack();
-    int defense = data.getDefense();
-    int maxHealth = data.getMaxHealth();
+    MonsterData monsterData = getMonsterData(id);
 
     AttributeInstance attribute = entity.getAttribute(Attribute.MAX_HEALTH); // 몬스터의 최대 체력 속성 가져오기
 
     // 최대 체력 설정
     if(attribute != null){
-      attribute.setBaseValue(maxHealth);
+      attribute.setBaseValue@@(monsterData.getMaxHealth());
     }
 
-    entity.setHealth(maxHealth); // 현재 체력도 최대 체력으로 설정
-    entity.customName(Component.text("[Lv. " + data.getLevel() + "] " + data.getName())); // 몬스터 이름에 레벨 표시
+    entity.setHealth(monsterData.getMaxHealth()); // 현재 체력도 최대 체력으로 설정
+    entity.customName(Component.text("[Lv. " + level + "] " + entity.getName())); // 몬스터 이름에 레벨 표시
 
     // 몬스터 이름이 항상 보이도록 설정
     entity.setCustomNameVisible(true);
   }
 
-  public String getMonsterId(LivingEntity entity){
-    return entity.getPersistentDataContainer().get(idKey, PersistentDataType.STRING);
-  }
+  // 몬스터 레벨 반환
+  public int getMonsterLevel(LivingEntity entity){
+    PersistentDataContainer container = entity.getPersistentDataContainer();
 
-  public MonsterData getMonsterData(LivingEntity entity){
-    String id = getMonsterId(entity);
+    Integer level = container.get(levelKey, PersistentDataType.INTEGER);
 
-    if(id == null){
-      return null;
+    if(level == null){
+      return 1;
     }
 
-    return monsterDataMap.get(id);
+    return level;
+  }
+
+  public int getMonsterDefense(LivingEntity entity){
+    PersistentDataContainer container = entity.getPersistentDataContainer();
+
+    Integer defense = container.get(defenseKey, PersistentDataType.INTEGER);
+
+    if(defense == null){
+      return 0;
+    }
+
+    return defense;
   }
 
   public void setLastAttacker(LivingEntity monster, Player player){
@@ -118,3 +131,10 @@ public class MonsterManager {
     return monsterDataMap.get(id);
   }
 }
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: _empty_/AttributeInstance#setBaseValue#

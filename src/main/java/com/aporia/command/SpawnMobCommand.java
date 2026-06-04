@@ -2,9 +2,13 @@ package com.aporia.command;
 
 import com.aporia.Main;
 
+import com.aporia.monster.MonsterData;
+
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.entity.Player;
+
 import org.bukkit.Location;
+
+import org.bukkit.entity.Player;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.EntityType;
 
@@ -17,19 +21,16 @@ public class SpawnMobCommand implements CommandExecutor {
     }
 
     if(args.length < 1){
-        player.sendMessage("사용법: /spawnmob <레벨>");
+        player.sendMessage("사용법: /spawnmob <몬스터ID>");
 
         return true;
     }
 
-    int level;
+    String monsterId = args[0];
+    MonsterData data = Main.getMain().getMonsterManager().getMonsterData(monsterId);
 
-    try{
-        level = Integer.parseInt(args[0]);
-    }catch(NumberFormatException e){
-        player.sendMessage("레벨은 숫자로 입력해야 합니다.");
-
-        return true;
+    if(data == null){
+        sender.sendMessage("존재하지 않는 몬스터입니다.");
     }
 
     // 몬스터 스폰 로직 (예시로 플레이어 위치에 좀비를 스폰하도록 설정)
@@ -38,9 +39,9 @@ public class SpawnMobCommand implements CommandExecutor {
 
 
     LivingEntity entity = (LivingEntity) location.getWorld().spawnEntity(location, entityType);
-    Main.getMain().getMonsterManager().setupMonster(entity, level); // 몬스터 레벨 설정
+    Main.getMain().getMonsterManager().setupMonster(entity, monsterId); // 몬스터 레벨 설정
 
-    sender.sendMessage("레벨 " + level + " 몬스터가 스폰되었습니다.");
+    sender.sendMessage(data.getName() + "스폰 완료");
 
     return true;
   }

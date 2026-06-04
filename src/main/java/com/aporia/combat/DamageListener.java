@@ -4,6 +4,8 @@ import com.aporia.Main;
 import com.aporia.player.FinalPlayerStats;
 import com.aporia.player.PlayerData;
 
+import com.aporia.monster.MonsterData;
+
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 
@@ -39,8 +41,12 @@ public class DamageListener implements Listener {
         // 피해 대상
         Entity damaged = e.getEntity();
 
-        // LivingEntity만 처리
         if(!(damaged instanceof LivingEntity livingEntity)){
+            return;
+        }
+        MonsterData data = Main.getMain().getMonsterManager().getMonsterData(livingEntity);
+
+        if(data == null){
             return;
         }
 
@@ -51,13 +57,13 @@ public class DamageListener implements Listener {
         FinalPlayerStats stats = Main.getMain().getEquipmentStatManager().calculateStats(player, playerData);
         
         // Monster 방어력 가져오기
-        int defense = Main.getMain().getMonsterManager().getMonsterDefense(livingEntity);
+        int monsterDefense = data.getDefense();
 
-        // 스텟 공격력 가져오기
-        int attack = stats.getAttack();
+        // 플레이어 공격력 가져오기
+        int playerAttack = stats.getAttack();
 
         // 데미지 계산
-        DamageResult result = Main.getMain().getDamageCalculator().calculatePlayerDamage(attack, defense, playerData.getCritChance(), playerData.getCritDamage());
+        DamageResult result = Main.getMain().getDamageCalculator().calculatePlayerDamage(playerAttack, monsterDefense, stats.getCritChance(), stats.getCritDamage());
         double damage = result.getDamage();
 
         // 최대 체력 Attribute 가져오기
@@ -100,8 +106,15 @@ public class DamageListener implements Listener {
 
     // 몬스터 공격 메서드
     private void handleMonsterAttack(LivingEntity monster, Player player, EntityDamageByEntityEvent e){
-        // 몬스터 레벨 가져오기
-        int level = Main.getMain().getMonsterManager().getMonsterLevel(monster);
+        // 몬스터 데이터 불러오기
+        MonsterData monsterData = Main.getMain().getMonsterManager().getMonsterData(monster);
+
+        if(monster == null){
+            return;
+        }
+
+        // 몬스터 공격력 가져오기
+        int monsterAttack = monsterData.getAttack();
 
         // 플레이어 데이터 가져오기
         PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(player.getUniqueId());
@@ -110,10 +123,10 @@ public class DamageListener implements Listener {
         FinalPlayerStats stats = Main.getMain().getEquipmentStatManager().calculateStats(player, playerData);
 
         // 플레이어 방어력 가져오기
-        int defense = stats.getDefense();
+        int playerDefense = stats.getDefense();
 
         // 데미지 계산
-        double damage = Main.getMain().getDamageCalculator().calculateMonsterDamage(level * 5, defense);
+        double damage = Main.getMain().getDamageCalculator().calculateMonsterDamage(monsterAttack, playerDefense);
         
         // 데미지 적용
         e.setDamage(damage);
