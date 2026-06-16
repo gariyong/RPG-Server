@@ -1,19 +1,70 @@
 package com.aporia.item;
 
+import java.io.File;
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import com.aporia.Main;
 
 public class EquipmentManager {
   private final HashMap<String, EquipmentData> equipmentMap = new HashMap<>();
 
+  private FileConfiguration config;
+
   public EquipmentManager(){
-    registerDefaultEquipments();
+        loadConfig();
+        loadEquipment();
   }
 
-  // 장비 저장
-  public void registerEquipment(EquipmentData equipmentData){
-    equipmentMap.put(equipmentData.getId(), equipmentData);
+  private void loadConfig(){
+        File file = new File(Main.getMain().getDataFolder(), "equipment.yml");
+
+        if(!file.exists()){
+                Main.getMain().saveResource("equipment.yml", false);
+        }
+
+        config = YamlConfiguration.loadConfiguration(file);
+  }
+
+  private void loadEquipment(){
+        for(String id : config.getKeys(false)){
+                String name = config.getString(id + ".name");
+
+                String typeName = config.getString(id + ".type");
+                EquipmentType type;
+
+                try{
+                        type = EquipmentType.valueOf(typeName);
+                }catch(Exception e){
+                        Bukkit.getLogger().warning(id + "의 EquipmentType이 잘못되었습니다.");
+                        continue;
+                }
+                
+                Material material = Material.matchMaterial(config.getString(id + ".material"));
+
+                if(material == null){
+                        Bukkit.getLogger().warning(id + "의 Material이 잘못되었습니다.");
+                        continue;
+                }
+
+                int attack = config.getInt(id + ".attack");
+                int defense = config.getInt(id + ".defense");
+
+                int maxHealth = config.getInt(id + ".max-health");
+
+                double critChance = config.getDouble(id + ".crit-chance");
+                double critDamage = config.getDouble(id + ".crit-damage");
+
+                EquipmentData data = new EquipmentData(id, name, type, material, attack, defense, maxHealth, critChance, critDamage);
+
+                equipmentMap.put(id, data);
+
+                Bukkit.getLogger().info("[Aporia] " + equipmentMap.size() + "개의 장비를 로드했습니다.");
+        }
   }
 
   // 장비 조회
@@ -21,77 +72,4 @@ public class EquipmentManager {
     return equipmentMap.get(id);
   }
 
-   // 기본 장비 등록
-    private void registerDefaultEquipments() {
-
-        registerEquipment(
-                new EquipmentData(
-                        "iron_sword",
-                        "철검",
-                        EquipmentType.WEAPON,
-                        Material.IRON_SWORD,
-                        10,
-                        0,
-                        0,
-                        5,
-                        0
-                )
-        );
-
-        registerEquipment(
-                new EquipmentData(
-                        "iron_helmet",
-                        "철 투구",
-                        EquipmentType.ARMOR,
-                        Material.IRON_HELMET,
-                        0,
-                        5,
-                        100,
-                        0,
-                        0
-                )
-        );
-
-        registerEquipment(
-                new EquipmentData(
-                        "iron_armor",
-                        "철 갑옷",
-                        EquipmentType.ARMOR,
-                        Material.IRON_CHESTPLATE,
-                        0,
-                        10,
-                        100,
-                        0,
-                        0
-                )
-        );
-
-        registerEquipment(
-                new EquipmentData(
-                        "iron_leggings",
-                        "철 레깅스",
-                        EquipmentType.ARMOR,
-                        Material.IRON_LEGGINGS,
-                        0,
-                        8,
-                        100,
-                        0,
-                        0
-                )
-        );
-
-        registerEquipment(
-                new EquipmentData(
-                        "iron_boots",
-                        "철 신발",
-                        EquipmentType.ARMOR,
-                        Material.IRON_BOOTS,
-                        0,
-                        2,
-                        100,
-                        0,
-                        0
-                )
-        );
-    }
 }

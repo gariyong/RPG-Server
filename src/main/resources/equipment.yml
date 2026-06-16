@@ -1,0 +1,25 @@
+iron_sword:
+  name: 철검
+  type: WEAPON
+  material: IRON_SWORD
+
+  attack: 5
+  defense: 0
+
+  max-health: 0
+
+  crit-chance: 5
+  crit-damage: 0
+
+iron_helmet:
+  name: 철투구
+  type: ARMOR
+  material: IRON_HELMET
+
+  attack: 0
+  defense: 3
+
+  max-health: 10
+
+  crit-chance: 0
+  crit-damage: 0
