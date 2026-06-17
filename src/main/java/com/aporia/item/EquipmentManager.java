@@ -37,6 +37,8 @@ public class EquipmentManager {
                 String typeName = config.getString(id + ".type");
                 EquipmentType type;
 
+                Rarity rarity = Rarity.valueOf(config.getString(id + ".rarity"));
+
                 try{
                         type = EquipmentType.valueOf(typeName);
                 }catch(Exception e){
@@ -59,7 +61,19 @@ public class EquipmentManager {
                 double critChance = config.getDouble(id + ".crit-chance");
                 double critDamage = config.getDouble(id + ".crit-damage");
 
-                EquipmentData data = new EquipmentData(id, name, type, material, attack, defense, maxHealth, critChance, critDamage);
+                EquipmentData data 
+                        = new EquipmentData(
+                                id, 
+                                name, 
+                                type, 
+                                rarity, 
+                                material, 
+                                attack, 
+                                defense, 
+                                maxHealth, 
+                                critChance, 
+                                critDamage
+                        );
 
                 equipmentMap.put(id, data);
 

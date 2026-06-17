@@ -3,6 +3,8 @@ iron_sword:
   type: WEAPON
   material: IRON_SWORD
 
+  rarity: COMMON
+
   attack: 5
   defense: 0
 
@@ -15,6 +17,8 @@ iron_helmet:
   name: 철투구
   type: ARMOR
   material: IRON_HELMET
+
+  rarity: COMMON
 
   attack: 0
   defense: 3

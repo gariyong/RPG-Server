@@ -30,11 +30,16 @@ public class CustomItemManager {
         return itemStack;
     }
 
+    Rarity rarity = equipmentData.getRarity();
+
     // 아이템 이름 설정
-    itemMeta.displayName(Component.text(equipmentData.getName()).color(NamedTextColor.WHITE));
+    itemMeta.displayName(Component.text("[" + rarity.getDisplayName() + "] " + equipmentData.getName()).color(rarity.getColor()));
 
     // 아이템 설명 설정
     List<Component>  lore = new ArrayList<>();
+
+    // 등급
+    lore.add(Component.text("등급: " + rarity.getDisplayName()).color(rarity.getColor()));
 
     // 공격력
     if(equipmentData.getAttack() != 0){

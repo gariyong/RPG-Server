@@ -15,9 +15,12 @@ public class EquipmentData {
   private final double critChance;
   private final double critDamage;
 
+  private final Rarity rarity;
+
   public EquipmentData(String id, 
     String name, 
     EquipmentType type, 
+    Rarity rarity,
     Material material, 
     int attack, 
     int defense, 
@@ -28,6 +31,7 @@ public class EquipmentData {
     {
     this.id = id;
     this.name = name;
+    this.rarity = rarity;
     this.type = type;
     this.material = material;
 
@@ -82,5 +86,10 @@ public class EquipmentData {
   // 장비 치명타 데미지 반환
   public double getCritDamage(){
     return critDamage;
+  }
+
+  // 장비 등급 반환
+  public Rarity getRarity(){
+    return rarity;
   }
 }
