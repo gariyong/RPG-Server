@@ -3,16 +3,28 @@ version: 1.0
 main: com.aporia.Main
 api-version: '1.21'
 description: Example Plugin
+
 commands:
   stats:
     description: 플레이어의 스텟을 보여줌
     usage: /stats
+
   exp:
     description: 경험치 명령어
     usage: /exp
+
   spawnmob:
     description: 몬스터 소환 명령어
     usage: /spawnmob <monsterId>
+
   getitem:
    description: 아이템 생성 명령어
    usage: /getitem <itemId>
+
+  craft:
+   description: 아이템 제작 명령어
+   usage: /craft <recipeId>
+
+  givematerial:
+   description: 재료 지급 명령어
+   usage: /givematerial <materialId> <count>

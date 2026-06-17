@@ -76,9 +76,9 @@ public class EquipmentManager {
                         );
 
                 equipmentMap.put(id, data);
-
-                Bukkit.getLogger().info("[Aporia] " + equipmentMap.size() + "개의 장비를 로드했습니다.");
         }
+        
+                Bukkit.getLogger().info("[Aporia] " + equipmentMap.size() + "개의 장비를 로드했습니다.");
   }
 
   // 장비 조회

@@ -1,0 +1,15 @@
+iron_sword:
+  result: iron_sword
+
+  amount: 1
+
+  materials:
+    iron_ingot: 10
+
+iron_helmet:
+  result: iron_helmet
+
+  amount: 1
+
+  materials:
+    iron_ingot: 8

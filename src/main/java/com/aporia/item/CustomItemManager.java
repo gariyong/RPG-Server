@@ -19,10 +19,10 @@ public class CustomItemManager {
   private final NamespacedKey itemIdKey;
 
   public CustomItemManager(){
-    itemIdKey = new NamespacedKey(Main.getMain(), "equipment_id");
+    itemIdKey = new NamespacedKey(Main.getMain(), "item_id");
   }
 
-  public ItemStack createItem(EquipmentData equipmentData){
+  public ItemStack createEquipment(EquipmentData equipmentData){
     ItemStack itemStack = new ItemStack(equipmentData.getMaterial());
     ItemMeta itemMeta = itemStack.getItemMeta();
 
@@ -75,5 +75,35 @@ public class CustomItemManager {
     itemStack.setItemMeta(itemMeta);
 
     return itemStack;
+  }
+
+  public ItemStack createMaterial(MaterialData materialData){
+    ItemStack itemStack = new ItemStack(materialData.getMaterial());
+    ItemMeta itemMeta = itemStack.getItemMeta();
+    if(itemMeta == null){
+        return itemStack;
+    }
+
+    itemMeta.displayName(Component.text(materialData.getName()));
+
+    PersistentDataContainer container = itemMeta.getPersistentDataContainer();
+    container.set(itemIdKey,PersistentDataType.STRING, materialData.getId());
+
+    itemStack.setItemMeta(itemMeta);
+
+    return itemStack;
+  }
+
+  public String getItemId(ItemStack itemStack){
+    if(itemStack == null){
+        return null;
+    }
+
+    ItemMeta itemMeta = itemStack.getItemMeta();
+    if(itemMeta == null){
+        return null;
+    }
+
+    return itemMeta.getPersistentDataContainer().get(itemIdKey, PersistentDataType.STRING);
   }
 }

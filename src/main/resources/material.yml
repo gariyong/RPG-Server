@@ -1,0 +1,15 @@
+iron_ore:
+  name: 철광석
+  material: RAW_IRON
+
+iron_ingot:
+  name: 철 주괴
+  material: IRON_INGOT
+
+magic_crystal:
+  name: 마력 결정
+  material: AMETHYST_SHARD
+
+dragon_scale:
+  name: 용의 비늘
+  material: PRISMARINE_SHARD

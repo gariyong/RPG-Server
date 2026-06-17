@@ -58,7 +58,7 @@ public class MonsterListener implements Listener{
             }
 
             // 생성
-            ItemStack item = Main.getMain().getCustomItemManager().createItem(equipmentData);
+            ItemStack item = Main.getMain().getCustomItemManager().createEquipment(equipmentData);
 
             // 드랍
             e.getEntity().getWorld().dropItemNaturally(e.getEntity().getLocation(), item);

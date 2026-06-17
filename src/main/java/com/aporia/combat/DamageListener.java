@@ -64,7 +64,7 @@ public class DamageListener implements Listener {
 
         // 데미지 계산
         DamageResult result = Main.getMain().getDamageCalculator().calculatePlayerDamage(playerAttack, monsterDefense, stats.getCritChance(), stats.getCritDamage());
-        double damage = result.getDamage();
+        int damage = result.getDamage();
 
         // 최대 체력 Attribute 가져오기
         AttributeInstance attribute = livingEntity.getAttribute(Attribute.MAX_HEALTH);
@@ -126,7 +126,7 @@ public class DamageListener implements Listener {
         int playerDefense = stats.getDefense();
 
         // 데미지 계산
-        double damage = Main.getMain().getDamageCalculator().calculateMonsterDamage(monsterAttack, playerDefense);
+        int damage = Main.getMain().getDamageCalculator().calculateMonsterDamage(monsterAttack, playerDefense);
         
         // 데미지 적용
         e.setDamage(damage);

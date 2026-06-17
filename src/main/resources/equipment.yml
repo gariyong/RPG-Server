@@ -13,6 +13,21 @@ iron_sword:
   crit-chance: 5
   crit-damage: 0
 
+diamond_sword:
+  name: 누군가의 검
+  type: WEAPON
+  material: DIAMOND_SWORD
+
+  rarity: UNCOMMON
+
+  attack: 10
+  defense: 0
+
+  max-health: 0
+
+  crit-chance: 10
+  crit-damage: 0
+
 iron_helmet:
   name: 철투구
   type: ARMOR

@@ -3,9 +3,11 @@ package com.aporia;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.aporia.command.StatsCommand;
+import com.aporia.command.CraftCommand;
 import com.aporia.command.ExpCommand;
+import com.aporia.command.GetItemCommand;
 import com.aporia.command.SpawnMobCommand;
-import com.aporia.item.GetItemCommand;
+import com.aporia.command.GiveMaterialCommand;
 
 import com.aporia.player.PlayerManager;
 import com.aporia.level.LevelManager;
@@ -14,6 +16,9 @@ import com.aporia.player.PlayerStatManager;
 import com.aporia.item.EquipmentManager;
 import com.aporia.item.CustomItemManager;
 import com.aporia.item.EquipmentStatManager;
+import com.aporia.crafting.RecipeManager;
+import com.aporia.item.MaterialManager;
+import com.aporia.crafting.CraftManager;
 
 import com.aporia.player.PlayerListener;
 import com.aporia.monster.MonsterListener;
@@ -34,6 +39,9 @@ public class Main extends JavaPlugin{
     private EquipmentManager equipmentManager; // equipmentManager
     private CustomItemManager customItemManager; // customItemManager
     private EquipmentStatManager equipmentStatManager; // equipmentStatManager
+    private RecipeManager recipeManager; // recipeManager
+    private MaterialManager materialManager; // materialManager
+    private CraftManager craftManager; // craftManager
 
     @Override
     public void onEnable() {
@@ -47,6 +55,9 @@ public class Main extends JavaPlugin{
         equipmentManager = new EquipmentManager(); // EquipmentManager 생성
         customItemManager = new CustomItemManager(); // CustomItemManger 생성
         equipmentStatManager = new EquipmentStatManager(); // EquipmentStatManager 생성
+        recipeManager = new RecipeManager(); // RecipeManager 생성
+        materialManager = new MaterialManager(); // MaterialManager 생성
+        craftManager = new CraftManager(); // CraftManager 생성
 
          // 이벤트 리스너 등록
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
@@ -59,6 +70,8 @@ public class Main extends JavaPlugin{
         getCommand("exp").setExecutor(new ExpCommand());
         getCommand("spawnmob").setExecutor(new SpawnMobCommand());
         getCommand("getitem").setExecutor(new GetItemCommand());
+        getCommand("craft").setExecutor(new CraftCommand());
+        getCommand("givematerial").setExecutor(new GiveMaterialCommand());
         getLogger().info("플러그인 활성화");
     }
 
@@ -115,5 +128,20 @@ public class Main extends JavaPlugin{
     // EquipmentStatManager 반환
     public EquipmentStatManager getEquipmentStatManager(){
         return equipmentStatManager;
+    }
+
+    // RecipeManager 반환
+    public RecipeManager getRecipeManager(){
+        return recipeManager;
+    }
+
+    // MaterialManager 반환
+    public MaterialManager getMaterialManager(){
+        return materialManager;
+    }
+
+    // CraftManager 변환
+    public CraftManager getCraftManager(){
+        return craftManager;
     }
 }

@@ -1,16 +1,16 @@
 package com.aporia.combat;
 
 public class DamageResult {
-  private final double damage;
+  private final int damage;
   private final boolean critical;
 
-  public DamageResult(double damage, boolean critical){
+  public DamageResult(int damage, boolean critical){
     this.damage = damage;
     this.critical = critical;
   }
 
   // 데미지 반환
-  public double getDamage(){
+  public int getDamage(){
     return damage;
   }
 

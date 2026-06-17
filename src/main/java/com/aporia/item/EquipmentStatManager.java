@@ -18,7 +18,7 @@ public class EquipmentStatManager {
   private final NamespacedKey itemKey;
 
   public EquipmentStatManager(){
-    itemKey = new NamespacedKey(Main.getMain(), "equipment_id");
+    itemKey = new NamespacedKey(Main.getMain(), "item_id");
   }
 
   public int getWeaponAttack(Player player){

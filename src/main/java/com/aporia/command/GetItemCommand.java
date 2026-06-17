@@ -1,4 +1,4 @@
-package com.aporia.item;
+package com.aporia.command;
 
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.Command;
@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.aporia.Main;
+import com.aporia.item.EquipmentData;
 
 public class GetItemCommand implements CommandExecutor{
   @Override
@@ -35,7 +36,7 @@ public class GetItemCommand implements CommandExecutor{
     }
 
     // 장비 생성
-    ItemStack itemStack = Main.getMain().getCustomItemManager().createItem(equipmentData);
+    ItemStack itemStack = Main.getMain().getCustomItemManager().createEquipment(equipmentData);
 
     // 지급
     player.getInventory().addItem(itemStack);
