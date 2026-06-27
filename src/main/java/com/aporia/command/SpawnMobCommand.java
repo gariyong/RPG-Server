@@ -10,7 +10,6 @@ import org.bukkit.Location;
 
 import org.bukkit.entity.Player;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.EntityType;
 
 public class SpawnMobCommand implements CommandExecutor {
   @Override
@@ -37,11 +36,9 @@ public class SpawnMobCommand implements CommandExecutor {
 
     // 몬스터 스폰 로직 (예시로 플레이어 위치에 좀비를 스폰하도록 설정)
     Location location = player.getLocation();
-    EntityType entityType = EntityType.ZOMBIE; // 예시로 좀비를 스폰하도록 설정
 
-
-    LivingEntity entity = (LivingEntity) location.getWorld().spawnEntity(location, entityType);
-    Main.getMain().getMonsterManager().setupMonster(entity, monsterId); // 몬스터 레벨 설정
+    LivingEntity entity = (LivingEntity) location.getWorld().spawnEntity(location, data.getEntityType());
+    Main.getMain().getMonsterManager().setupMonster(entity, monsterId);
 
     sender.sendMessage(data.getName() + "스폰 완료");
 
