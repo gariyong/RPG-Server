@@ -18,6 +18,10 @@ public class GiveMaterialCommand implements CommandExecutor {
             return true;
         }
 
+        if(!(sender.hasPermission("aporia.admin"))){
+            return true;
+        }
+        
         if (args.length < 2) {
             player.sendMessage(
                     "/givematerial <id> <amount>"

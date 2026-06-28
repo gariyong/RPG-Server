@@ -68,7 +68,7 @@ public class CraftManager {
 
                 if(item.getAmount() <= remain){
                     remain -= item.getAmount();
-                    item.setAmount(0);
+                    player.getInventory().remove(item);
                 }else{
                     item.setAmount(item.getAmount() - remain);
                     remain = 0;

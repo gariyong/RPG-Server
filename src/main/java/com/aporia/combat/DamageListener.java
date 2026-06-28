@@ -109,7 +109,7 @@ public class DamageListener implements Listener {
         // 몬스터 데이터 불러오기
         MonsterData monsterData = Main.getMain().getMonsterManager().getMonsterData(monster);
 
-        if(monster == null){
+        if(monsterData == null){
             return;
         }
 

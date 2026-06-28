@@ -19,6 +19,10 @@ public class SpawnMobCommand implements CommandExecutor {
         return true;
     }
 
+    if(!(sender.hasPermission("aporia.admin"))){
+            return true;
+        }
+
     if(args.length < 1){
         player.sendMessage("사용법: /spawnmob <몬스터ID>");
 

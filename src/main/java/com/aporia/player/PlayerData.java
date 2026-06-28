@@ -13,6 +13,7 @@ public class PlayerData {
     private int defense;
     private double critChance;
     private double critDamage;
+    private long gold;
 
     // 플레이어 데이터 초기 생성자
     public PlayerData(UUID uuid){
@@ -24,10 +25,11 @@ public class PlayerData {
         defense = 5;
         critChance = 5;
         critDamage = 150;
+        gold = 0;
     }
 
     // 플레이어 데이터 전체 생성자
-    public PlayerData(UUID uuid, int level, long exp, int attack, int defense, int maxHealth, double critChance, double critDamage){
+    public PlayerData(UUID uuid, int level, long exp, int attack, int defense, int maxHealth, double critChance, double critDamage, long gold){
         this.uuid = uuid;
         this.level = level;
         this.exp = exp;
@@ -36,6 +38,7 @@ public class PlayerData {
         this.maxHealth = maxHealth;
         this.critChance = critChance;
         this.critDamage = critDamage;
+        this.gold = gold;
     }
 
     // uid 반환
@@ -115,5 +118,30 @@ public class PlayerData {
     // 치명타 데미지 설정
     public void setCritDamage(double critDamage){
         this.critDamage = critDamage;
+    }
+
+    // 골드 반환
+    public long getGold(){
+        return gold;
+    }
+
+    // 골드 설정
+    public void setGold(long gold){
+        this.gold = Math.max(0, gold);
+    }
+
+    // 골드 추가
+    public void addGold(long amount){
+        setGold(this.gold + amount);
+    }
+
+    // 골드 차감 (성공 여부 반환)
+    public boolean removeGold(long amount){
+        if(this.gold < amount){
+            return false;
+        }
+
+        this.gold -= amount;
+        return true;
     }
 }

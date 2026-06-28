@@ -113,26 +113,33 @@ public class MonsterManager {
 
   private void loadMonster(){
     for(String id : config.getKeys(false)){
-      EntityType entityType = EntityType.valueOf(config.getString(id + "entity-type"));
-      String name = config.getString(id + "name");
-      int level = config.getInt(id + "level");
-      int attack = config.getInt(id + "attack");
-      int defense = config.getInt(id + "defense");
-      int health = config.getInt(id + "health");
-      int exp = config.getInt(id + "exp");
-      
-      ConfigurationSection dropSection = config.getConfigurationSection(id + "drops");
-      List<DropData> drops = new ArrayList<>();
+      try{
+        EntityType entityType = EntityType.valueOf(config.getString(id + ".entity-type"));
+        String name = config.getString(id + ".name");
+        int level = config.getInt(id + ".level");
+        int attack = config.getInt(id + ".attack");
+        int defense = config.getInt(id + ".defense");
+        int health = config.getInt(id + ".health");
+        long exp = config.getLong(id + ".exp");
+        long gold = config.getLong(id + ".gold");
 
-      if(dropSection != null){
-        for(String itemId : dropSection.getKeys(false)){
-          double chance = dropSection.getDouble(id + "chance");
-          drops.add(new DropData(itemId, chance));
+        ConfigurationSection dropSection = config.getConfigurationSection(id + ".drops");
+        List<DropData> drops = new ArrayList<>();
+
+        if(dropSection != null){
+          for(String itemId : dropSection.getKeys(false)){
+            double chance = dropSection.getDouble(itemId + ".chance");
+            drops.add(new DropData(itemId, chance));
+          }
         }
-      }
 
-      MonsterData data = new MonsterData(id, entityType, name, level, attack, defense, health, exp, drops);
-      monsterDataMap.put(id, data);
+        MonsterData data = new MonsterData(id, entityType, name, level, attack, defense, health, exp, gold, drops);
+        monsterDataMap.put(id, data);
+      }catch(Exception e){
+        Bukkit.getLogger().warning("[Aporia] " + id + " 몬스터 로드 실패: " + e.getMessage());
+      }
     }
+
+    Bukkit.getLogger().info("[Aporia] " + monsterDataMap.size() + "개의 몬스터를 로드했습니다.");
   }
 }

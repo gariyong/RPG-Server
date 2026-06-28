@@ -16,10 +16,11 @@ public class MonsterData{
     private final int maxHealth;
 
     private final long exp;
+    private final long gold;
 
     private final List<DropData> drops;
 
-    MonsterData(String id, EntityType entityType, String name, int level, int attack, int defense, int maxHealth, long exp, List<DropData> drops){
+    MonsterData(String id, EntityType entityType, String name, int level, int attack, int defense, int maxHealth, long exp, long gold, List<DropData> drops){
         this.id = id;
         this.entityType = entityType;
         this.name = name;
@@ -31,6 +32,7 @@ public class MonsterData{
         this.maxHealth = maxHealth;
         
         this.exp = exp;
+        this.gold = gold;
 
         this.drops = drops;
     }
@@ -73,6 +75,11 @@ public class MonsterData{
     // 몬스터 경험치 반환
     public long getExp(){
         return exp;
+    }
+
+    // 몬스터 골드 반환
+    public long getGold(){
+        return gold;
     }
 
     // 몬스터 드랍 테이블 반환

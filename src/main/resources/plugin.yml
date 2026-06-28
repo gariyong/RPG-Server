@@ -12,14 +12,17 @@ commands:
   exp:
     description: 경험치 명령어
     usage: /exp
+    permission: aporia.admin
 
   spawnmob:
     description: 몬스터 소환 명령어
     usage: /spawnmob <monsterId>
+    permission: aporia.admin
 
   getitem:
    description: 아이템 생성 명령어
    usage: /getitem <itemId>
+   permission: aporia.admin
 
   craft:
    description: 아이템 제작 명령어
@@ -28,3 +31,13 @@ commands:
   givematerial:
    description: 재료 지급 명령어
    usage: /givematerial <materialId> <count>
+   permission: aporia.admin
+
+  gold:
+    description: 골드 조회 및 관리 명령어
+    usage: /gold <add|remove|set|check> <player> [amount]
+
+permissions:
+  aporia.admin:
+    description: Aporia 관리자 명령어 권한
+    default: op

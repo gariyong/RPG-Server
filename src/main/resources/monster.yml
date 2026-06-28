@@ -3,10 +3,11 @@ zombie:
 
  name: 좀비
  level: 1
- attack : 5
+ attack: 5
  defense: 0
  health: 50
  exp: 10
+ gold: 5
 
  drops:
   iron_ingot:
@@ -15,8 +16,8 @@ zombie:
   iron_sword:
     chance: 10
 
-skeleteon:
- entity-type: SKELETEON
+skeleton:
+ entity-type: SKELETON
 
  name: 스켈레톤
  level: 5
@@ -24,10 +25,11 @@ skeleteon:
  defense: 5
  health: 100
  exp: 20
+ gold: 15
 
  drops:
   magic_crystal:
     chance: 20
-  
+
   iron_helmet:
     chance: 5

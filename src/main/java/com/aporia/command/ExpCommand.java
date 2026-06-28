@@ -1,7 +1,7 @@
 package com.aporia.command;
 
 import com.aporia.Main;
-import com. aporia.player.PlayerData;
+import com.aporia.player.PlayerData;
 
 import org.bukkit.entity.Player;
 import org.bukkit.command.*;
@@ -14,6 +14,10 @@ public class ExpCommand implements CommandExecutor{
         if(!(sender instanceof Player)){
             sender.sendMessage("콘솔에서는 사용할 수 없는 명령어입니다.");
 
+            return true;
+        }
+
+        if(!(sender.hasPermission("aporia.admin"))){
             return true;
         }
 

@@ -8,6 +8,7 @@ import com.aporia.command.ExpCommand;
 import com.aporia.command.GetItemCommand;
 import com.aporia.command.SpawnMobCommand;
 import com.aporia.command.GiveMaterialCommand;
+import com.aporia.command.GoldCommand;
 
 import com.aporia.player.PlayerManager;
 import com.aporia.level.LevelManager;
@@ -72,6 +73,7 @@ public class Main extends JavaPlugin{
         getCommand("getitem").setExecutor(new GetItemCommand());
         getCommand("craft").setExecutor(new CraftCommand());
         getCommand("givematerial").setExecutor(new GiveMaterialCommand());
+        getCommand("gold").setExecutor(new GoldCommand());
         getLogger().info("플러그인 활성화");
     }
 

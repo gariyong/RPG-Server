@@ -18,6 +18,10 @@ public class GetItemCommand implements CommandExecutor{
         return true;
     }
 
+    if(!(sender.hasPermission("aporia.admin"))){
+        return true;
+    }
+
      // 아이템 ID 입력 확인
     if (args.length < 1) {
         player.sendMessage("/getitem <itemId>");

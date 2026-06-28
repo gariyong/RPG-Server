@@ -38,9 +38,17 @@ public class MonsterListener implements Listener{
          // 플레이어 데이터 불러오기
         PlayerData playerData = Main.getMain().getPlayerManager().getPlayerData(killer.getUniqueId());
 
+        if(playerData == null){
+            return;
+        }
+
         // 경험치 추가
         long exp = monsterData.getExp();
         Main.getMain().getLevelManager().addExp(killer, playerData, exp);
+
+        // 골드 추가
+        long gold = monsterData.getGold();
+        playerData.addGold(gold);
 
         // 드랍 처리
 
@@ -67,7 +75,12 @@ public class MonsterListener implements Listener{
         
         
         // 경험치 획득 메시지 출력
-        killer.sendMessage(Component.text("경험치 획득! (" + exp + ")").color(NamedTextColor.GOLD));
+        killer.sendMessage(Component.text("경험치 획득! (" + exp + ")").color(NamedTextColor.YELLOW));
+
+        // 골드 획득 메시지 출력
+        if(gold > 0){
+            killer.sendMessage(Component.text("골드 획득! (" + gold + "G)").color(NamedTextColor.YELLOW));
+        }
 
         // 경험치 지급 후 정리
         Main.getMain().getMonsterManager().removeLastAttacker((LivingEntity)e.getEntity());

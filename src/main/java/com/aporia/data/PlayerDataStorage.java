@@ -36,6 +36,7 @@ public class PlayerDataStorage {
             config.set("maxHealth", 100);
             config.set("critChance", 0);
             config.set("critDamage", 150);
+            config.set("gold", 0);
             
             config.save(playerDataFile);
 
@@ -69,9 +70,10 @@ public class PlayerDataStorage {
     int maxHealth = config.getInt("maxHealth");
     double critChance = config.getDouble("critChance");
     double critDamage = config.getDouble("critDamage");
+    long gold = config.getLong("gold");
 
     // 불러온 데이터를 PlayerData 객체로 반환
-    return new PlayerData(uuid, level, exp, attack, defense, maxHealth, critChance, critDamage);
+    return new PlayerData(uuid, level, exp, attack, defense, maxHealth, critChance, critDamage, gold);
   }
 
   public void savePlayerData(PlayerData playerData){
@@ -87,6 +89,7 @@ public class PlayerDataStorage {
     config.set("maxHealth", playerData.getMaxHealth());
     config.set("critChance", playerData.getCritChance());
     config.set("critDamage", playerData.getCritDamage());
+    config.set("gold", playerData.getGold());
 
     try {
         config.save(playerDataFile);
@@ -122,6 +125,10 @@ public class PlayerDataStorage {
 
     if(!config.contains("critDamage")){
         config.set("critDamage", 150);
+    }
+
+    if(!config.contains("gold")){
+        config.set("gold", 0);
     }
   }
 }

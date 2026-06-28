@@ -14,6 +14,10 @@ public class CraftCommand implements CommandExecutor{
             return true;
         }
 
+        if(!(sender.hasPermission("aporia.admin"))){
+            return true;
+        }
+
         if(args.length < 1){
             player.sendMessage("/craft <recipeId>");
 

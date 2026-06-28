@@ -22,6 +22,7 @@ public class StatsCommand implements CommandExecutor{
                 player.sendMessage("공격력: " + playerData.getAttack());
                 player.sendMessage("최대 체력: " + playerData.getMaxHealth());
                 player.sendMessage("방어력: " + playerData.getDefense());
+                player.sendMessage("골드: " + playerData.getGold() + "G");
 
                 return true;
             }

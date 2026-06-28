@@ -36,8 +36,14 @@ public class EquipmentManager {
 
                 String typeName = config.getString(id + ".type");
                 EquipmentType type;
+                Rarity rarity;
 
-                Rarity rarity = Rarity.valueOf(config.getString(id + ".rarity"));
+                try{
+                        rarity = Rarity.valueOf(config.getString(id + ".rarity"));
+                }catch(Exception e){
+                        Bukkit.getLogger().warning(id + "의 장비가 로드되지 않았습니다.");
+                        continue;
+                }
 
                 try{
                         type = EquipmentType.valueOf(typeName);
